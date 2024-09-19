@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <NoWarn>$(NoWarn);CA1031;CA1003;CA1502;CS3016;CS8981;CA1513</NoWarn>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">

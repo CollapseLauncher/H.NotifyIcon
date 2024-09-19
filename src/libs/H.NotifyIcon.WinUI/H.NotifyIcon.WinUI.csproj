@@ -10,6 +10,7 @@
     <Nullable>enable</Nullable>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
