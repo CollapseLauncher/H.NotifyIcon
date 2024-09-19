@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
+    <WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI;IS_PACKABLE;HAS_PLATFORM_CODE</DefineConstants>
     <NoWarn>$(NoWarn);CS3021;CA1031;CS8002;CA1513;NETSDK1206</NoWarn>
@@ -11,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240627000" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
   </ItemGroup>
 
   <PropertyGroup Label="NuGet">
@@ -24,11 +26,11 @@ popups, context menus, and balloon messages. It can be used directly in code or 
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DependencyPropertyGenerator" Version="1.4.0">
+    <PackageReference Include="DependencyPropertyGenerator" Version="1.5.0-beta.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="EventGenerator.Generator" Version="0.13.0">
+    <PackageReference Include="EventGenerator.Generator" Version="0.13.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
