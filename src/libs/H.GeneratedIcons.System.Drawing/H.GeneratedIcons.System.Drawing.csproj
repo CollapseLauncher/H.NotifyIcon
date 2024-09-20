@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0</TargetFrameworks>
     <Platforms>x64</Platforms>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <ItemGroup Label="Usings">

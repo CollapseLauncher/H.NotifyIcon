@@ -14,6 +14,12 @@
         "resolved": "0.13.1",
         "contentHash": "MIHd93AVQB+iHOPGex+yP6QLys6eKG+QFablE8rbamv5Njm6DfSkJWivUQGDVBqBnKUF0x2oyUZcJZ/w77cLoA=="
       },
+      "Microsoft.NET.ILLink.Tasks": {
+        "type": "Direct",
+        "requested": "[9.0.0-rc.1.24431.7, )",
+        "resolved": "9.0.0-rc.1.24431.7",
+        "contentHash": "B8jHIIszeUdDY+O4G1/xPOuhrriwsv9Z8/u3XSOAqc8Z0mQCeLBKg2oLGElDZeRF8wWXDGklAKY3f0IHopyXkQ=="
+      },
       "Microsoft.Windows.CsWin32": {
         "type": "Direct",
         "requested": "[0.3.106, )",
