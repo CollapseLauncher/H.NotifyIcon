@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net9.0": {
+      "DotNet.ReproducibleBuilds": {
+        "type": "Direct",
+        "requested": "[1.2.25, )",
+        "resolved": "1.2.25",
+        "contentHash": "xCXiw7BCxHJ8pF6wPepRUddlh2dlQlbr81gXA72hdk4FLHkKXas7EH/n+fk5UCA/YfMqG1Z6XaPiUjDbUNBUzg=="
+      },
+      "Microsoft.NET.ILLink.Tasks": {
+        "type": "Direct",
+        "requested": "[9.0.0-rc.1.24431.7, )",
+        "resolved": "9.0.0-rc.1.24431.7",
+        "contentHash": "B8jHIIszeUdDY+O4G1/xPOuhrriwsv9Z8/u3XSOAqc8Z0mQCeLBKg2oLGElDZeRF8wWXDGklAKY3f0IHopyXkQ=="
+      },
+      "MinVer": {
+        "type": "Direct",
+        "requested": "[6.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "+/SsmiySsXJlvQLCGBqaZKNVt3s/Y/HbAdwtop7Km2CnuZbaScoqkWJEBQ5Cy9ebkn6kCYKrHsXgwrFdTgcb3g=="
+      },
+      "PolySharp": {
+        "type": "Direct",
+        "requested": "[1.14.1, )",
+        "resolved": "1.14.1",
+        "contentHash": "mOOmFYwad3MIOL14VCjj02LljyF1GNw1wP0YVlxtcPvqdxjGGMNdNJJxHptlry3MOd8b40Flm8RPOM8JOlN2sQ=="
+      },
+      "System.Drawing.Common": {
+        "type": "Direct",
+        "requested": "[9.0.0-rc.1.24451.1, )",
+        "resolved": "9.0.0-rc.1.24451.1",
+        "contentHash": "5TJtJLhJk7viKkkflNYN+V+Tl/qxoKrkmCTog2j0dzqamIY/ximaAWQfPznYOUR5852XxxvhZsQLd2LzjJFWUw==",
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "9.0.0-rc.1.24431.7"
+        }
+      },
+      "Microsoft.Win32.SystemEvents": {
+        "type": "Transitive",
+        "resolved": "9.0.0-rc.1.24431.7",
+        "contentHash": "IK3fwmfSCVArYWKjPUTEeD9nRXF1VENiFb4+hlqWuUxfP1hPVw41y/sOEdLZtRB+BVdgh6NaZjetrVhEuG4Iyg=="
+      }
+    }
+  }
+}
