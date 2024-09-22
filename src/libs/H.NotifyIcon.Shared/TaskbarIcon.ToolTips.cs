@@ -138,7 +138,7 @@ public partial class TaskbarIcon
         }
 #endif
 
-        TrayIcon.UpdateToolTip(text ?? string.Empty);
+        TrayIcon.UpdateToolTip(text);
     }
 
     #endregion
@@ -166,7 +166,7 @@ public partial class TaskbarIcon
                 return;
             }
 
-            var previewArgs = OnPreviewTrayToolTipOpen();
+            OnPreviewTrayToolTipOpen();
 #if HAS_WPF
             if (previewArgs.Handled)
             {
@@ -192,7 +192,7 @@ public partial class TaskbarIcon
         }
         else
         {
-            var previewArgs = OnPreviewTrayToolTipClose();
+            OnPreviewTrayToolTipClose();
 #if HAS_WPF
             if (previewArgs.Handled)
             {

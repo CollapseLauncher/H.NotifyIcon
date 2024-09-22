@@ -134,11 +134,11 @@ public static class WindowUtilities
     /// </summary>
     /// <returns></returns>
     [SupportedOSPlatform("windows5.1.2600")]
-    public static unsafe void MakeTransparent(nint hWndHandle)
+    public static void MakeTransparent(nint hWndHandle)
     {
         var hWnd = new HWND(hWndHandle);
 
-        SubClassDelegate = new SUBCLASSPROC(WindowSubClass);
+        SubClassDelegate = WindowSubClass;
 
         _ = PInvoke.SetWindowSubclass(
             hWnd: hWnd,
@@ -191,9 +191,6 @@ public static class WindowUtilities
 
                     return new LRESULT(1);
                 }
-
-            default:
-                break;
         }
 
         return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
