@@ -26,7 +26,7 @@ public partial class TaskbarIcon
     }
 
     #endregion
-    
+
     #region Methods
 
     private void ShowContextMenuInSecondWindowMode(System.Drawing.Point cursorPosition)
@@ -195,8 +195,8 @@ public partial class TaskbarIcon
         var scale = flyout.XamlRoot?.RasterizationScale ?? 1.0;
 
         return new Size(
-            width: Math.Round(scale * width + 4.0),  // borders
-            height: Math.Round(scale * height + 4.0)); // borders
+            width: Math.Round((scale * width) + 4.0),  // borders
+            height: Math.Round((scale * height) + 4.0)); // borders
     }
 
     #endregion

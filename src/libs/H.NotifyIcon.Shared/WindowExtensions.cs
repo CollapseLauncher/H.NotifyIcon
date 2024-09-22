@@ -38,8 +38,8 @@ public static class WindowExtensions
 #pragma warning restore CA1416 // Validate platform compatibility
         }
     }
-    
-#if HAS_MAUI    
+
+#if HAS_MAUI
     /// <summary>
     /// 
     /// </summary>
@@ -53,7 +53,7 @@ public static class WindowExtensions
 #endif
     }
 #endif
-    
+
     /// <summary>
     /// Shows the window and optionally disables the Efficiency Mode for the current process.
     /// </summary>

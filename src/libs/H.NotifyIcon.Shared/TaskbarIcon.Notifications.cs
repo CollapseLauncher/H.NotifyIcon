@@ -111,14 +111,7 @@ public partial class TaskbarIcon
     /// <param name="sender"></param>
     private void OnBalloonToolTipChanged(object? sender, MessageWindow.BalloonToolTipChangedEventArgs args)
     {
-        if (args.IsVisible)
-        {
-            _ = OnTrayBalloonTipShown();
-        }
-        else
-        {
-            _ = OnTrayBalloonTipClosed();
-        }
+        _ = args.IsVisible ? OnTrayBalloonTipShown() : OnTrayBalloonTipClosed();
     }
 #endif
 

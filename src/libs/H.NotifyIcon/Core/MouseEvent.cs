@@ -30,7 +30,7 @@ public enum MouseEvent
     /// The right mouse button was clicked.
     /// </summary>
     IconRightMouseDown,
-    
+
     /// <summary>
     /// The right mouse button was released.
     /// </summary>

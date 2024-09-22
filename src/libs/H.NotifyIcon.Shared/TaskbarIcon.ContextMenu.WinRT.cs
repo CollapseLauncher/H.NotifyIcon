@@ -101,8 +101,8 @@ public partial class TaskbarIcon
             }
         }
     }
-   
+
 #endif
-    
+
     #endregion
 }

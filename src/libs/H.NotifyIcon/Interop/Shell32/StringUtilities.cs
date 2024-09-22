@@ -1,4 +1,4 @@
-﻿namespace H.NotifyIcon.Interop;
+﻿namespace H.NotifyIcon.Interop.Shell32;
 
 internal static class StringUtilities
 {

@@ -12,7 +12,7 @@ public sealed partial class GeneratedIconSource
     protected override Freezable CreateInstanceCore()
     {
         using var bitmap = Generate();
-        
+
         return Create(
             pixelWidth: bitmap.Width,
             pixelHeight: bitmap.Height,

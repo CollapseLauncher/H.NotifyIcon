@@ -66,7 +66,7 @@ public partial class TaskbarIcon
 
 #if !HAS_MAUI
 #if !MACOS
-        
+
         switch (args.MouseEvent)
         {
             case MouseEvent.MouseMove:
@@ -101,7 +101,7 @@ public partial class TaskbarIcon
                 MiddleClickCommand?.TryExecute(MiddleClickCommandParameter);
 #endif
                 break;
-            
+
             case MouseEvent.IconLeftDoubleClick:
                 _ = OnTrayLeftMouseDoubleClick();
                 break;
@@ -111,7 +111,7 @@ public partial class TaskbarIcon
             case MouseEvent.IconMiddleDoubleClick:
                 _ = OnTrayMiddleMouseDoubleClick();
                 break;
-            
+
             case MouseEvent.IconDoubleClick:
                 // cancel single click timer
                 SingleClickTimer.Change(Timeout.Infinite, Timeout.Infinite);
@@ -203,7 +203,7 @@ public partial class TaskbarIcon
             SingleClickTimer.Change(DoubleClickWaitTime, Timeout.Infinite);
         }
     }
-    
+
     /// <summary>
     /// Performs a delayed action if the user requested an action
     /// based on a single click of the left mouse.<br/>
@@ -226,7 +226,7 @@ public partial class TaskbarIcon
 #if HAS_WPF
             // switch to UI thread
             this.GetDispatcher().Invoke(action);
-#elif HAS_UNO && (!HAS_WINUI && !HAS_UNO_WINUI)
+#elif HAS_UNO && !HAS_WINUI && !HAS_UNO_WINUI
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
 #elif HAS_MAUI
             MainThread.BeginInvokeOnMainThread(action);

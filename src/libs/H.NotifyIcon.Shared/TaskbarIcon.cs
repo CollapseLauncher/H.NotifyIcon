@@ -64,7 +64,7 @@ public partial class TaskbarIcon : FrameworkElement
                 Debugger.Break();
             }
         };
-        
+
 #if !MACOS
         // https://github.com/HavenDV/H.NotifyIcon/issues/34
         //Unloaded += (_, _) => Dispose();

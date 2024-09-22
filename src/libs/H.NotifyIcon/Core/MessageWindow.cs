@@ -10,16 +10,16 @@ namespace H.NotifyIcon.Core;
 /// </summary>
 [Event<bool>("ChangeToolTipStateRequest",
     Description = "The custom tooltip should be closed or hidden.",
-    PropertyNames = new[] { "IsVisible" })]
+    PropertyNames = ["IsVisible"])]
 [Event<MouseEvent, Point>("MouseEventReceived",
     Description = "Fired in case the user clicked or moved within the taskbar icon area.",
-    PropertyNames = new[] { "MouseEvent", "Point" })]
+    PropertyNames = ["MouseEvent", "Point"])]
 [Event<KeyboardEvent, Point>("KeyboardEventReceived",
     Description = "Fired in case the user interacted with the taskbar icon area with keyboard shortcuts.",
-    PropertyNames = new[] { "KeyboardEvent", "Point" })]
+    PropertyNames = ["KeyboardEvent", "Point"])]
 [Event<bool>("BalloonToolTipChanged",
     Description = "Fired if a balloon ToolTip was either displayed or closed (indicated by the boolean flag).",
-    PropertyNames = new[] { "IsVisible" })]
+    PropertyNames = ["IsVisible"])]
 [Event("TaskbarCreated",
     Description = "Fired if the taskbar was created or restarted. Requires the taskbar icon to be reset")]
 [Event("DpiChanged",
@@ -185,9 +185,11 @@ public partial class MessageWindow : IDisposable
                 case PInvoke.WM_INITMENUPOPUP:
                     _ = OnInitMenuPopup();
                     break;
-                
+
                 case PInvoke.WM_DPICHANGED:
                     _ = OnDpiChanged();
+                    break;
+                default:
                     break;
             }
             return;
@@ -196,6 +198,8 @@ public partial class MessageWindow : IDisposable
         var point = Version switch
         {
             IconVersion.Vista => ToPoint(wParam),
+            IconVersion.Win95 => throw new NotImplementedException(),
+            IconVersion.Win2000 => throw new NotImplementedException(),
             _ => CursorUtilities.GetCursorPos(),
         };
 

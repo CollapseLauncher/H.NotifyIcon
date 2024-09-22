@@ -17,6 +17,6 @@ public class PopupSubMenu : PopupItem
     public string Text { get; set; } = string.Empty;
 
     /// <inheritdoc/>
-    public ICollection<PopupItem> Items { get; } = new List<PopupItem>();
+    public ICollection<PopupItem> Items { get; } = [];
 
 }

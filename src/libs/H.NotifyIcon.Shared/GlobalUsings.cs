@@ -1,5 +1,4 @@
 ﻿global using System.IO;
-global using System.ComponentModel;
 global using System.Diagnostics;
 global using DependencyPropertyGenerator;
 global using EventGenerator;
@@ -30,11 +29,8 @@ global using Microsoft.UI.Text;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Controls.Primitives;
-global using Microsoft.UI.Xaml.Input;
 global using Microsoft.UI.Xaml.Media;
 global using Microsoft.UI.Xaml.Media.Imaging;
-global using Microsoft.UI.Xaml.Interop;
-global using Microsoft.UI.Xaml.Resources;
 global using System.Windows.Input;
 global using Windows.Storage;
 global using FontStyles = Windows.UI.Text.FontStyle;

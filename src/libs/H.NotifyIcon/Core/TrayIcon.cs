@@ -1,10 +1,9 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using EventGenerator;
 #if MACOS
 using CoreFoundation;
 using ObjCRuntime;
 #else
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using H.NotifyIcon.Interop;
@@ -21,6 +20,15 @@ namespace H.NotifyIcon.Core;
 /// A Interop proxy to for a taskbar icon (NotifyIcon) that sits in the system's
 /// taskbar notification area ("system tray").
 /// </summary>
+/// <remarks>
+/// Initializes the taskbar icon and registers a message listener
+/// in order to receive events from the taskbar area.
+/// </remarks>
+/// <param name="id">
+/// Unique ID. <br/>
+/// It will be used by the system to store your TrayIcon settings, 
+/// so it is recommended to make it fixed and unique for each application TrayIcon, not random.
+/// </param>
 #endif
 #if MACOS || MACCATALYST
 [Advice("Starting with macos10.10 Soft-deprecation, forwards message to button, but will be gone in the future.")]
@@ -41,8 +49,8 @@ This can happen in the following cases:
 [Event<IconVersion>("VersionChanged", Description = @"Version was changed.
 This can happen in the following cases:
 - Via direct Create call
-- Through the ClearNotifications call since its implementation uses TrayIcon re-creation", PropertyNames = new[] { "Version" })]
-public partial class TrayIcon : IDisposable
+- Through the ClearNotifications call since its implementation uses TrayIcon re-creation", PropertyNames = ["Version"])]
+public partial class TrayIcon(Guid id) : IDisposable
 {
     #region Properties
 
@@ -60,7 +68,7 @@ public partial class TrayIcon : IDisposable
     /// Icon visibility.
     /// </summary>
     public IconVisibility Visibility { get; set; } = IconVisibility.Visible;
-    
+
 #if MACOS
     
     /// <summary>
@@ -82,7 +90,7 @@ public partial class TrayIcon : IDisposable
     public NSImage? Icon { get; set; }
     
 #else
-    
+
     /// <summary>
     /// Unique ID. <br/>
     /// It will be used by the system to store your TrayIcon settings, 
@@ -91,7 +99,7 @@ public partial class TrayIcon : IDisposable
     /// <remarks>
     /// Note: Windows associates a Guid with the path of the binary, so you must use the new Guid when you change the path.
     /// </remarks>
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } = id;
 
     /// <summary>
     /// IsEnabled?
@@ -139,26 +147,9 @@ public partial class TrayIcon : IDisposable
     public bool UseStandardTooltip { get; set; } = true;
 
 #endif
-    
     #endregion
-
     #region Constructors
-
 #if !MACOS
-
-    /// <summary>
-    /// Initializes the taskbar icon and registers a message listener
-    /// in order to receive events from the taskbar area.
-    /// </summary>
-    /// <param name="id">
-    /// Unique ID. <br/>
-    /// It will be used by the system to store your TrayIcon settings, 
-    /// so it is recommended to make it fixed and unique for each application TrayIcon, not random.
-    /// </param>
-    public TrayIcon(Guid id)
-    {
-        Id = id;
-    }
 
     /// <summary>
     /// Initializes the taskbar icon and registers a message listener
@@ -179,9 +170,9 @@ public partial class TrayIcon : IDisposable
     public TrayIcon(string name) : this(CreateUniqueGuidFromString(name))
     {
     }
-    
+
 #endif
-    
+
     #endregion
 
     #region Static methods
@@ -225,29 +216,9 @@ public partial class TrayIcon : IDisposable
             return processPath;
         }
 #endif
-        using (var process = Process.GetCurrentProcess())
-        {
-            var path = process?.MainModule?.FileName;
-            if (path != null &&
-                !string.IsNullOrWhiteSpace(path))
-            {
-                return path;
-            }
-        }
-        
-        var assembly =
-            Assembly.GetEntryAssembly() ??
-            throw new InvalidOperationException("Entry assembly is not found.");
-
-#pragma warning disable IL3000
-        var location = assembly.Location;
-#pragma warning restore IL3000
-        if (string.IsNullOrWhiteSpace(location))
-        {
-            location = AppContext.BaseDirectory;
-        }
-        
-        return location;
+        using var process = Process.GetCurrentProcess();
+        var path = process?.MainModule?.FileName ?? throw new EntryPointNotFoundException("The parent process path is not found");
+        return path;
     }
 
     /// <summary>
@@ -255,12 +226,12 @@ public partial class TrayIcon : IDisposable
     /// </summary>
     /// <returns></returns>
     public static Guid CreateUniqueGuidForProcessPath(string? postfix = null)
-    {  
+    {
         return CreateUniqueGuidFromString($"{GetProcessPath()}_{postfix}");
     }
 
 #endif
-    
+
     #endregion
 
     #region Public methods
@@ -382,7 +353,7 @@ public partial class TrayIcon : IDisposable
             return false;
         }
 #endif
-        
+
         OnRemoved();
         return true;
     }
@@ -405,7 +376,7 @@ public partial class TrayIcon : IDisposable
         }
 
         Id = id;
-        
+
         if (wasCreated)
         {
             Create();
@@ -426,7 +397,7 @@ public partial class TrayIcon : IDisposable
     }
 
 #endif
-    
+
     /// <summary>
     /// Sets tooltip message. <br/>
     /// If <see cref="IsCreated"/> is <see langword="false"/>, then it simply sets the corresponding property.
@@ -455,7 +426,7 @@ public partial class TrayIcon : IDisposable
             throw new InvalidOperationException("UpdateToolTip failed.");
         }
 #endif
-        
+
         ToolTip = text;
     }
 
@@ -487,7 +458,7 @@ public partial class TrayIcon : IDisposable
         {
             return false;
         }
-        
+
         Icon = handle;
         return true;
     }
@@ -689,7 +660,7 @@ public partial class TrayIcon : IDisposable
     }
 
 #endif
-    
+
     #endregion
 
     #region Dispose

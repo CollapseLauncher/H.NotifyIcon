@@ -6,7 +6,7 @@ public partial class TaskbarIcon : IDisposable
     /// Set to true as soon as <c>Dispose</c> has been invoked. 
     /// </summary>
     public bool IsDisposed { get; private set; }
-    
+
     [SupportedOSPlatform("windows5.1.2600")]
     private void DisposeAfterExit()
     {

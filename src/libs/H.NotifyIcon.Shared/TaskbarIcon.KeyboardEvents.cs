@@ -26,27 +26,17 @@ public partial class TaskbarIcon
             return;
         }
 
-        switch (args.KeyboardEvent)
+        _ = args.KeyboardEvent switch
         {
-            case KeyboardEvent.ContextMenu:
-                _ = OnTrayKeyboardContextMenu();
-                break;
-
-            case KeyboardEvent.KeySelect:
-                _ = OnTrayKeyboardKeySelect();
-                break;
-
-            case KeyboardEvent.Select:
-                _ = OnTrayKeyboardSelect();
-                break;
-
-            default:
-                throw new ArgumentOutOfRangeException(
-                    nameof(args),
-                    $"Missing handler for keyboard event flag: {args.KeyboardEvent}");
-        }
+            KeyboardEvent.ContextMenu => OnTrayKeyboardContextMenu(),
+            KeyboardEvent.KeySelect => OnTrayKeyboardKeySelect(),
+            KeyboardEvent.Select => OnTrayKeyboardSelect(),
+            _ => throw new ArgumentOutOfRangeException(
+                                nameof(args),
+                                $"Missing handler for keyboard event flag: {args.KeyboardEvent}"),
+        };
     }
 #endif
-    
+
     #endregion
 }

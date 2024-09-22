@@ -89,9 +89,12 @@ public partial class TaskbarIcon
                         menuItems.Add(item);
                         break;
                     }
+
+                default:
+                    break;
             }
         }
     }
 
-#endregion
+    #endregion
 }

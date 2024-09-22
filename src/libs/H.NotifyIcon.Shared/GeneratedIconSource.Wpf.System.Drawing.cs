@@ -17,10 +17,10 @@ public sealed partial class GeneratedIconSource
                 x: 0,
                 y: 0,
                 width: bitmap.Width,
-                height: bitmap.Height), 
+                height: bitmap.Height),
             flags: System.Drawing.Imaging.ImageLockMode.ReadOnly,
             bitmap.PixelFormat);
-        
+
         return Create(
             pixelWidth: bitmap.Width,
             pixelHeight: bitmap.Height,

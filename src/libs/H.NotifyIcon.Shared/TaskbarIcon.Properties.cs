@@ -25,7 +25,7 @@ public partial class TaskbarIcon
     #endregion
 
     #region Id
-    
+
 #if !MACOS
     [SupportedOSPlatform("windows5.1.2600")]
     partial void OnIdChanged(Guid newValue)
@@ -51,7 +51,7 @@ public partial class TaskbarIcon
         oldValue?.Dispose();
         _ = UpdateIcon(newValue);
     }
-    
+
     /// <summary>
     /// Updates TrayIcon.Icon without changing Icon property.
     /// </summary>
@@ -61,7 +61,7 @@ public partial class TaskbarIcon
     public bool UpdateIcon(Icon? value)
     {
 #if !MACOS
-        return TrayIcon.UpdateIcon((nint?)value?.Handle ?? 0);
+        return TrayIcon.UpdateIcon(value?.Handle ?? 0);
 #else
         return true;
 #endif
@@ -70,7 +70,7 @@ public partial class TaskbarIcon
     #endregion
 
 #if !HAS_MAUI
-    
+
     #region Visibility
 
     [SupportedOSPlatform("windows5.1.2600")]

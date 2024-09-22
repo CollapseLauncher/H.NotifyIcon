@@ -1,6 +1,4 @@
 ﻿#if !MACOS
-using System.Drawing;
-using System.Threading;
 using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.Core;
@@ -57,7 +55,7 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     /// <inheritdoc/>
-    
+
     protected override void Dispose(bool disposing)
     {
         if (Thread == null)

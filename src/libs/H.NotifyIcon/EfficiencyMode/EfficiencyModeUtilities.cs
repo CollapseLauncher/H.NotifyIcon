@@ -45,7 +45,16 @@ public static class EfficiencyModeUtilities
                 powerThrottling.ControlMask = PInvoke.PROCESS_POWER_THROTTLING_EXECUTION_SPEED;
                 powerThrottling.StateMask = 0;
                 break;
-
+            case QualityOfServiceLevel.Medium:
+                break;
+            case QualityOfServiceLevel.Utility:
+                break;
+            case QualityOfServiceLevel.Eco:
+                break;
+            case QualityOfServiceLevel.Media:
+                break;
+            case QualityOfServiceLevel.Deadline:
+                break;
             default:
                 throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using H.NotifyIcon.Core;
+using H.NotifyIcon.Interop.Shell32;
 
 namespace H.NotifyIcon.Interop;
 
