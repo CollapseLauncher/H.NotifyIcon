@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Platforms>x64</Platforms>
     <IsAotCompatible>true</IsAotCompatible>
+    <CsWinRTAotOptimizerEnabled>true</CsWinRTAotOptimizerEnabled>
     <LangVersion>12</LangVersion>
   </PropertyGroup>
 
