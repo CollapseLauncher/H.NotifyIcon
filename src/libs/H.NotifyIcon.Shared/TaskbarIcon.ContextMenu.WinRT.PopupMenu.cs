@@ -1,4 +1,6 @@
-﻿namespace H.NotifyIcon;
+﻿using Point = System.Drawing.Point;
+
+namespace H.NotifyIcon;
 
 public partial class TaskbarIcon
 {
@@ -8,9 +10,9 @@ public partial class TaskbarIcon
     /// Displays the ContextMenu/ContextFlyout if it was set.
     /// </summary>
     [SupportedOSPlatform("windows5.1.2600")]
-    private void ShowContextMenuInPopupMenuMode(System.Drawing.Point cursorPosition)
+    private void ShowContextMenuInPopupMenuMode(Point cursorPosition)
     {
-        var menu = new H.NotifyIcon.Core.PopupMenu
+        var menu = new PopupMenu
         {
             RightToLeft = FlowDirection == FlowDirection.RightToLeft
         };
@@ -54,10 +56,8 @@ public partial class TaskbarIcon
                         break;
                     }
 #endif
-                case MenuFlyoutSeparator separator:
+                case MenuFlyoutSeparator:
                     {
-                        // The following line of code ensure that this code block is not trimed when PublishTrimmed is true.
-                        var a = separator;
                         menuItems.Add(new PopupMenuSeparator());
                         break;
                     }

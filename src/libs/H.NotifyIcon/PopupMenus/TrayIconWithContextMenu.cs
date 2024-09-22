@@ -1,5 +1,6 @@
 ﻿#if !MACOS
 using H.NotifyIcon.Interop;
+// ReSharper disable UnusedMember.Global
 
 namespace H.NotifyIcon.Core;
 
@@ -22,7 +23,7 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     /// <inheritdoc/>
-    public TrayIconWithContextMenu() : base()
+    public TrayIconWithContextMenu()
     {
         MessageWindow.MouseEventReceived += OnMouseEvent;
     }
@@ -33,7 +34,9 @@ public class TrayIconWithContextMenu : TrayIcon
         MessageWindow.MouseEventReceived += OnMouseEvent;
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public new void Create()
     {
         if (Thread != null)
@@ -55,7 +58,6 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     /// <inheritdoc/>
-
     protected override void Dispose(bool disposing)
     {
         if (Thread == null)
@@ -81,14 +83,35 @@ public class TrayIconWithContextMenu : TrayIcon
 
     private void OnMouseEvent(object? sender, MessageWindow.MouseEventReceivedEventArgs args)
     {
-        if (args.MouseEvent == MouseEvent.MouseMove)
+        switch (args.MouseEvent)
         {
-            return;
-        }
-
-        if (args.MouseEvent == MouseEvent.IconRightMouseUp)
-        {
-            ShowContextMenu();
+            case MouseEvent.MouseMove:
+                return;
+            case MouseEvent.IconRightMouseUp:
+                ShowContextMenu();
+                break;
+            case MouseEvent.IconLeftMouseDown:
+                break;
+            case MouseEvent.IconLeftMouseUp:
+                break;
+            case MouseEvent.IconLeftDoubleClick:
+                break;
+            case MouseEvent.IconRightMouseDown:
+                break;
+            case MouseEvent.IconRightDoubleClick:
+                break;
+            case MouseEvent.IconMiddleMouseDown:
+                break;
+            case MouseEvent.IconMiddleMouseUp:
+                break;
+            case MouseEvent.IconMiddleDoubleClick:
+                break;
+            case MouseEvent.IconDoubleClick:
+                break;
+            case MouseEvent.BalloonToolTipClicked:
+                break;
+            default:
+                throw new NotSupportedException();
         }
     }
 

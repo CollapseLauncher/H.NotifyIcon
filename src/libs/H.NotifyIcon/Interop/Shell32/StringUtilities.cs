@@ -3,7 +3,7 @@
 internal static class StringUtilities
 {
     public static unsafe void SetTo(
-        this string text,
+        this string? text,
         char* start,
         int maxLength)
     {

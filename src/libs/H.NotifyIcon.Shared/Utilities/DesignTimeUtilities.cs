@@ -1,4 +1,6 @@
-﻿namespace H.NotifyIcon;
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable UnassignedGetOnlyAutoProperty
+namespace H.NotifyIcon;
 
 internal static class DesignTimeUtilities
 {

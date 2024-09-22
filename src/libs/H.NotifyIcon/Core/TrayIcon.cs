@@ -217,7 +217,7 @@ public partial class TrayIcon(Guid id) : IDisposable
         }
 #endif
         using var process = Process.GetCurrentProcess();
-        var path = process?.MainModule?.FileName ?? throw new EntryPointNotFoundException("The parent process path is not found");
+        var path = process.MainModule?.FileName ?? throw new EntryPointNotFoundException("The parent process path is not found");
         return path;
     }
 

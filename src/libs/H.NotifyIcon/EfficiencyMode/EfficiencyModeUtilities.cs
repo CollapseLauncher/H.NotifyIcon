@@ -70,7 +70,7 @@ public static class EfficiencyModeUtilities
     /// Based on <see href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass"/>
     /// </summary>
     [SupportedOSPlatform("windows5.1.2600")]
-    public static unsafe void SetProcessPriorityClass(ProcessPriorityClass priorityClass)
+    public static void SetProcessPriorityClass(ProcessPriorityClass priorityClass)
     {
         var flags = priorityClass switch
         {

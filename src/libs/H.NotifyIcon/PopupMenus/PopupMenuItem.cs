@@ -4,35 +4,52 @@
 public class PopupMenuItem : PopupItem
 {
     /// <inheritdoc/>
-    public PopupMenuItem()
+    public PopupMenuItem() { }
+
+    /// <inheritdoc/>
+    public PopupMenuItem(PopupMenu? subMenu)
     {
+        SubMenu = subMenu;
     }
 
     /// <inheritdoc/>
-    public PopupMenuItem(string text, EventHandler<EventArgs> onClick)
+    public PopupMenuItem(string text, EventHandler<EventArgs> onClick, PopupMenu? subMenu)
     {
-        Text = text;
-        Click += onClick;
+        Text    =  text;
+        SubMenu =  subMenu;
+        Click   += onClick;
     }
-
-    /// <inheritdoc/>
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public event EventHandler<EventArgs>? Click;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public bool Checked { get; set; }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public bool Enabled { get; set; } = true;
 
     //public Image? Image { get; set; }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public PopupMenu? SubMenu { get; }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public string Text { get; set; } = string.Empty;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public SystemPopupMenuItemBreak Break { get; set; } = SystemPopupMenuItemBreak.None;
 
     internal MENU_ITEM_FLAGS NativeFlags
@@ -61,6 +78,10 @@ public class PopupMenuItem : PopupItem
                 case SystemPopupMenuItemBreak.MenuBarBreak:
                     flags |= MENU_ITEM_FLAGS.MF_MENUBARBREAK;
                     break;
+                case SystemPopupMenuItemBreak.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             //if (Image != null)

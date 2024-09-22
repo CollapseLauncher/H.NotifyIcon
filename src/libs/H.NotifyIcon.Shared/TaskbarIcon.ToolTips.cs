@@ -1,4 +1,5 @@
-﻿namespace H.NotifyIcon;
+﻿// ReSharper disable UnusedMember.Local
+namespace H.NotifyIcon;
 
 [DependencyProperty<string>("ToolTipText", DefaultValue = "",
     Description = "A tooltip text that is being displayed if no custom ToolTip was set or if custom tooltips are not supported.", Category = CategoryName)]
@@ -33,7 +34,11 @@ public partial class TaskbarIcon
     #region TrayToolTip
 
     [SupportedOSPlatform("windows5.1.2600")]
-    partial void OnTrayToolTipChanged(UIElement? oldValue, UIElement? newValue)
+    partial void OnTrayToolTipChanged(
+#if HAS_WPF
+        UIElement? oldValue, UIElement? newValue
+#endif
+        )
     {
         CreateCustomToolTip();
 
@@ -51,7 +56,7 @@ public partial class TaskbarIcon
         WriteToolTipSettings();
     }
 
-    #endregion
+#endregion
 
 #if !MACOS
 
@@ -94,7 +99,7 @@ public partial class TaskbarIcon
         }
     }
 
-    #endregion
+#endregion
 
     #region Methods
 
@@ -153,7 +158,7 @@ public partial class TaskbarIcon
     /// <param name="args">Whether to show or hide the tooltip.</param>
     private void OnToolTipChange(object? sender, MessageWindow.ChangeToolTipStateRequestEventArgs args)
     {
-#if !HAS_MAUI        
+#if !HAS_MAUI
         if (TrayToolTipResolved == null)
         {
             return;

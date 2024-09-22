@@ -31,8 +31,7 @@ public sealed partial class GeneratedIconSource
     {
         var size = Size;
         using var fontFamily =
-            FontFamily?.ToSystemDrawingFontFamily() ??
-            new System.Drawing.FontFamily(string.Empty);
+            FontFamily.ToSystemDrawingFontFamily();
         using var font = new System.Drawing.Font(
             fontFamily,
             (float)FontSize,

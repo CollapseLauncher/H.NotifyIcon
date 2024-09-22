@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using EventGenerator;
 using H.NotifyIcon.Interop;
+// ReSharper disable InconsistentNaming
+// ReSharper disable IdentifierTypo
 
 namespace H.NotifyIcon.Core;
 
@@ -34,7 +36,7 @@ public partial class MessageWindow : IDisposable
     #region Constants
 
     /// <summary>
-    /// The ID of messages that are received from the the
+    /// The ID of messages that are received from the
     /// taskbar icon.
     /// </summary>
     public const int CallbackMessageId = 0x400;
@@ -51,7 +53,7 @@ public partial class MessageWindow : IDisposable
 
     /// <summary>
     /// Used to track whether a mouse-up event is just
-    /// the aftermath of a double-click and therefore needs
+    /// the aftermath of a double click and therefore needs
     /// to be suppressed.
     /// </summary>
     private bool IsDoubleClick { get; set; }
@@ -59,15 +61,15 @@ public partial class MessageWindow : IDisposable
     /// <summary>
     /// A delegate that processes messages of the hidden
     /// native window that receives window messages. Storing
-    /// this reference makes sure we don't loose our reference
+    /// this reference makes sure we don't lose our reference
     /// to the message window.
     /// </summary>
-    private WNDPROC MessageHandler { get; set; }
+    private WNDPROC MessageHandler { get; }
 
     /// <summary>
     /// Window class ID.
     /// </summary>
-    internal string WindowId { get; private set; }
+    internal string WindowId { get; }
 
     /// <summary>
     /// Handle for the message window.
@@ -189,8 +191,6 @@ public partial class MessageWindow : IDisposable
                 case PInvoke.WM_DPICHANGED:
                     _ = OnDpiChanged();
                     break;
-                default:
-                    break;
             }
             return;
         }
@@ -283,10 +283,6 @@ public partial class MessageWindow : IDisposable
 
             case PInvoke.NIN_SELECT | PInvoke.NINF_KEY:
                 _ = OnKeyboardEventReceived(KeyboardEvent.KeySelect, point);
-                break;
-
-            default:
-                //Debug.WriteLine("Unhandled NotifyIcon message ID: " + lParam);
                 break;
         }
     }

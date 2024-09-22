@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-using H.NotifyIcon.Interop;
+﻿using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.Core;
 
-/// <inheritdoc/>
+/// <summary>
+/// 
+/// </summary>
 [SupportedOSPlatform("windows5.0")]
 public class PopupMenu
 {
@@ -43,54 +40,15 @@ public class PopupMenu
         BOOL id;
 
         var lastId = 1;
-        List<DestroyMenuSafeHandle> safeHandles = new();
-
-        void AppendToMenu(HMENU menu, ICollection<PopupItem> items)
-        {
-            var handle = new DestroyMenuSafeHandle(menu, true);
-            safeHandles.Add(handle);
-
-            BOOL AddSubMenu(PopupSubMenu subMenu, int itemId)
-            {
-                var subMenuHandle = PInvoke.CreatePopupMenu();
-                AppendToMenu(subMenuHandle, subMenu.Items);
-                return PInvoke.AppendMenu(
-                    hMenu: handle,
-                    uFlags: MENU_ITEM_FLAGS.MF_POPUP,
-                    uIDNewItem: (nuint)subMenuHandle.Value.ToInt64(),
-                    lpNewItem: subMenu.Text).EnsureNonZero();
-            }
-
-            foreach (var item in items)
-            {
-                if (item.Visible == false) continue;
-
-                item.Id = lastId++;
-                _ = item switch
-                {
-                    PopupMenuItem menuItem => PInvoke.AppendMenu(
-                        hMenu: handle,
-                        uFlags: menuItem.NativeFlags,
-                        uIDNewItem: (nuint)item.Id,
-                        lpNewItem: menuItem.Text).EnsureNonZero(),
-                    PopupMenuSeparator => PInvoke.AppendMenu(
-                        hMenu: handle,
-                        uFlags: MENU_ITEM_FLAGS.MF_SEPARATOR,
-                        uIDNewItem: (nuint)item.Id,
-                        lpNewItem: null).EnsureNonZero(),
-                    PopupSubMenu subMenu => AddSubMenu(subMenu, item.Id),
-                    _ => throw new NotImplementedException()
-                };
-            }
-        }
+        List<DestroyMenuSafeHandle> safeHandles = [];
 
         unsafe
         {
-            var _hMenu = PInvoke.CreatePopupMenu();
-            AppendToMenu(_hMenu, Items);
+            var hMenu = PInvoke.CreatePopupMenu();
+            AppendToMenu(hMenu, Items);
 
             id = PInvoke.TrackPopupMenuEx(
-                hMenu: _hMenu,
+                hMenu: hMenu,
                 uFlags: (uint)flags,
                 x: x,
                 y: y,
@@ -125,6 +83,49 @@ public class PopupMenu
             if (item is PopupMenuItem menuItem)
             {
                 menuItem.OnClick();
+            }
+        }
+
+        return;
+
+        void AppendToMenu(HMENU menu, ICollection<PopupItem> items)
+        {
+            var handle = new DestroyMenuSafeHandle(menu, true);
+            safeHandles.Add(handle);
+
+            foreach (var item in items)
+            {
+                if (item.Visible == false) continue;
+
+                item.Id = lastId++;
+                _ = item switch
+                    {
+                        PopupMenuItem menuItem => PInvoke.AppendMenu(
+                                                                     hMenu: handle,
+                                                                     uFlags: menuItem.NativeFlags,
+                                                                     uIDNewItem: (nuint)item.Id,
+                                                                     lpNewItem: menuItem.Text).EnsureNonZero(),
+                        PopupMenuSeparator => PInvoke.AppendMenu(
+                                                                 hMenu: handle,
+                                                                 uFlags: MENU_ITEM_FLAGS.MF_SEPARATOR,
+                                                                 uIDNewItem: (nuint)item.Id,
+                                                                 lpNewItem: null).EnsureNonZero(),
+                        PopupSubMenu subMenu => AddSubMenu(subMenu, item.Id),
+                        _ => throw new NotImplementedException()
+                    };
+            }
+
+            return;
+
+            BOOL AddSubMenu(PopupSubMenu subMenu, int itemId)
+            {
+                var subMenuHandle = PInvoke.CreatePopupMenu();
+                AppendToMenu(subMenuHandle, subMenu.Items);
+                return PInvoke.AppendMenu(
+                                          hMenu: handle,
+                                          uFlags: MENU_ITEM_FLAGS.MF_POPUP,
+                                          uIDNewItem: (nuint)subMenuHandle.Value.ToInt64(),
+                                          lpNewItem: subMenu.Text).EnsureNonZero();
             }
         }
     }

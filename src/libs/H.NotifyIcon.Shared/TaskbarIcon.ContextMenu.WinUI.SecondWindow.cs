@@ -16,7 +16,7 @@ public partial class TaskbarIcon
     private MenuFlyout? ContextMenuFlyout { get; set; }
 
 #pragma warning disable CA1822 // Mark members as static
-    partial void OnContextMenuModeChanged(ContextMenuMode oldValue, ContextMenuMode newValue)
+    partial void OnContextMenuModeChanged(ContextMenuMode newValue)
 #pragma warning restore CA1822 // Mark members as static
     {
         if (newValue is ContextMenuMode.SecondWindow)

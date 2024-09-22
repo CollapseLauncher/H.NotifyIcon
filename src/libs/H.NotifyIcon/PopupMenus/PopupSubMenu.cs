@@ -13,10 +13,14 @@ public class PopupSubMenu : PopupItem
         Text = text;
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public string Text { get; set; } = string.Empty;
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// 
+    /// </summary>
     public ICollection<PopupItem> Items { get; } = [];
 
 }

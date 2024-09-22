@@ -20,7 +20,7 @@ public partial class TaskbarIcon
         // raise preview event no matter whether context menu is currently set
         // or not (enables client to set it on demand)
 #if !HAS_MAUI
-        var args = OnPreviewTrayContextMenuOpen();
+        OnPreviewTrayContextMenuOpen();
 #endif
         if (ContextFlyout == null)
         {

@@ -1,4 +1,5 @@
-﻿namespace H.NotifyIcon;
+﻿// ReSharper disable UnusedMember.Global
+namespace H.NotifyIcon;
 
 #if !HAS_MAUI
 [DependencyProperty<PopupActivationMode>("PopupActivation", DefaultValue = PopupActivationMode.LeftClick,
@@ -27,7 +28,11 @@ public partial class TaskbarIcon
 
     #region TrayPopup
 
-    partial void OnTrayPopupChanged(UIElement? oldValue, UIElement? newValue)
+    partial void OnTrayPopupChanged(
+#if HAS_WPF
+        UIElement? oldValue, UIElement? newValue
+#endif
+        )
     {
 #if HAS_WPF
         if (oldValue != null)
@@ -48,9 +53,9 @@ public partial class TaskbarIcon
         CreatePopup();
     }
 
-    #endregion
+#endregion
 
-    #endregion
+#endregion
 
     #region Methods
 
@@ -117,8 +122,8 @@ public partial class TaskbarIcon
             return;
         }
 
-        var args = OnPreviewTrayPopupOpen();
 #if HAS_WPF
+        var args = OnPreviewTrayPopupOpen();
         if (args.Handled)
         {
             return;
@@ -146,10 +151,10 @@ public partial class TaskbarIcon
             return;
         }
 
+#if HAS_WPF
         // raise preview event no matter whether popup is currently set
         // or not (enables client to set it on demand)
         var args = OnPreviewTrayPopupOpen();
-#if HAS_WPF
         if (args.Handled)
         {
             return;
@@ -210,25 +215,30 @@ public partial class TaskbarIcon
 #if HAS_WPF
         TrayPopupResolved.Placement = PopupPlacement;
 #endif
-        if (PopupPlacement == PlacementMode.Bottom)
+        switch (PopupPlacement)
         {
-            // place popup above system taskbar
-            var point = TrayInfo.GetTrayLocation(0);
-#if HAS_WPF
+            case PlacementMode.Bottom:
+            {
+                // place popup above system taskbar
+                var point = TrayInfo.GetTrayLocation(0);
+            #if HAS_WPF
             TrayPopupResolved.Placement = PlacementMode.AbsolutePoint;
-#endif
-            TrayPopupResolved.HorizontalOffset = point.X;
-            TrayPopupResolved.VerticalOffset = point.Y;
-        }
-#if HAS_WPF
-        else if (PopupPlacement == PlacementMode.AbsolutePoint)
-#else
-        else if (PopupPlacement == PlacementMode.Mouse)
-#endif
-        {
-            // place popup near mouse cursor
-            TrayPopupResolved.HorizontalOffset = cursorPosition.X;
-            TrayPopupResolved.VerticalOffset = cursorPosition.Y;
+            #endif
+                TrayPopupResolved.HorizontalOffset = point.X;
+                TrayPopupResolved.VerticalOffset   = point.Y;
+                break;
+            }
+            case PlacementMode.Mouse:
+                // place popup near mouse cursor
+                TrayPopupResolved.HorizontalOffset = cursorPosition.X;
+                TrayPopupResolved.VerticalOffset   = cursorPosition.Y;
+                break;
+            case PlacementMode.Left:
+            case PlacementMode.Right:
+            case PlacementMode.Top:
+                break;
+            default:
+                throw new NotSupportedException();
         }
 
         TrayPopupResolved.HorizontalOffset += PopupOffset.Left;
