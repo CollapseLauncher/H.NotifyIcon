@@ -7,6 +7,9 @@
     <IsAotCompatible>true</IsAotCompatible>
     <CsWinRTAotOptimizerEnabled>true</CsWinRTAotOptimizerEnabled>
     <LangVersion>12</LangVersion>
+    
+    <!-- Placeholder to make Hot Reload happy -->
+    <Version>0.0.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">
