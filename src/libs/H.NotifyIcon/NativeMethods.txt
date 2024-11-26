@@ -9,6 +9,7 @@ SetForegroundWindow
 ShowWindow
 SetWindowLong
 GetWindowLong
+SetWindowPos
 DefSubclassProc
 SetWindowSubclass
 GetClientRect
@@ -96,3 +97,5 @@ GetCurrentPackageFullName
 // DesktopWindowsManagerMethods.SetRoundedCorners
 DwmSetWindowAttribute
 DWM_WINDOW_CORNER_PREFERENCE
+
+WINDOW_STYLE
