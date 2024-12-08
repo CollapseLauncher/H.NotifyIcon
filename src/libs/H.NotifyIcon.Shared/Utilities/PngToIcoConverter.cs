@@ -8,7 +8,6 @@ internal static class PngToIcoConverter
         using var inStream = new MemoryStream(data);
         var metadata = inStream.GetMetadata();
         using var outStream = new MemoryStream();
-        
         // Header
         {
             // Reserved
@@ -54,18 +53,18 @@ internal static class PngToIcoConverter
 
     private static byte[] IntToLittle2(int input)
     {
-        byte[] b = new byte[2];
-        b[0] = (byte)input;
-        b[1] = (byte)(((uint)input >> 8) & 0xFF);
+        byte[] b = [(byte)input, (byte)(((uint)input >> 8) & 0xFF)];
         return b;
     }
     private static byte[] IntToLittle4(int input)
     {
-        byte[] b = new byte[4];
-        b[0] = (byte)input;
-        b[1] = (byte)(((uint)input >> 8) & 0xFF);
-        b[2] = (byte)(((uint)input >> 16) & 0xFF);
-        b[3] = (byte)(((uint)input >> 24) & 0xFF);
+        byte[] b =
+        [
+            (byte)input,
+            (byte)(((uint)input >> 8) & 0xFF),
+            (byte)(((uint)input >> 16) & 0xFF),
+            (byte)(((uint)input >> 24) & 0xFF),
+        ];
         return b;
     }
 }

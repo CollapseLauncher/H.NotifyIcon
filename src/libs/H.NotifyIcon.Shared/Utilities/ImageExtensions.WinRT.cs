@@ -49,12 +49,11 @@ internal static partial class ImageExtensions
 
     public static async Task<Stream> ToStreamAsync(this ImageSource imageSource, CancellationToken cancellationToken = default)
     {
-        switch(imageSource)
+        switch (imageSource)
         {
             case BitmapImage bitmapImage:
                 {
                     var uri = bitmapImage.UriSource;
-                    
                     return await uri.ToStreamAsync(cancellationToken).ConfigureAwait(true);
                 }
 

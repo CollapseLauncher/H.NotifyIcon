@@ -142,7 +142,7 @@ public partial class TaskbarIcon
             {
                 HwndUtilities.SetWindowStyleAsPopupWindow(ContextMenuWindowHandle.Value);
             }
-            
+
             flyout.ShowAt(window.Content, new FlyoutShowOptions
             {
                 ShowMode = FlyoutShowMode.Transient,

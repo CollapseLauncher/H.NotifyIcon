@@ -1,5 +1,7 @@
 ﻿#if !MACOS
 using H.NotifyIcon.Interop;
+using Microsoft.Extensions.Logging;
+
 // ReSharper disable UnusedMember.Global
 
 namespace H.NotifyIcon.Core;
@@ -23,8 +25,10 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     /// <inheritdoc/>
-    public TrayIconWithContextMenu()
+    public TrayIconWithContextMenu(ILogger? logger) : base()
     {
+        Logger = logger;
+
         MessageWindow.MouseEventReceived += OnMouseEvent;
     }
 

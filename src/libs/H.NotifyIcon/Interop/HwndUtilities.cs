@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace H.NotifyIcon.Interop;
+﻿namespace H.NotifyIcon.Interop;
 
 /// <summary>
 /// A set of HWND Helper Methods
@@ -18,24 +15,24 @@ public static class HwndUtilities
     internal static void SetWindowStyle(IntPtr hWnd, WINDOW_STYLE newStyle)
     {
         var h = new HWND(hWnd);
-        
+
         _ = PInvoke.SetWindowLong(h, WINDOW_LONG_PTR_INDEX.GWL_STYLE, (int)newStyle).EnsureNonZero();
-        
+
         // Redraw window
         _ = PInvoke.SetWindowPos(
-            hWnd: h, 
-            hWndInsertAfter: new HWND(IntPtr.Zero), 
-            X: 0, 
-            Y: 0, 
-            cx: 0, 
-            cy: 0, 
+            hWnd: h,
+            hWndInsertAfter: new HWND(IntPtr.Zero),
+            X: 0,
+            Y: 0,
+            cx: 0,
+            cy: 0,
             uFlags: SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED |
                     SET_WINDOW_POS_FLAGS.SWP_NOMOVE |
                     SET_WINDOW_POS_FLAGS.SWP_NOSIZE |
                     SET_WINDOW_POS_FLAGS.SWP_NOZORDER |
                     SET_WINDOW_POS_FLAGS.SWP_NOOWNERZORDER);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>

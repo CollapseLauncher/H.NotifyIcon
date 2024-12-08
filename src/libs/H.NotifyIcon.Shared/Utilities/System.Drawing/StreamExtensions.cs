@@ -11,18 +11,18 @@ internal static class StreamExtensions
 
         return new Icon(stream, iconSize);
     }
-    
+
     [SupportedOSPlatform("windows")]
     internal static Bitmap ToBitmap(this Stream stream)
     {
         return new Bitmap(stream);
     }
-    
+
     [SupportedOSPlatform("windows")]
     internal static (int Width, int Height, int BitsPerPixel) GetMetadata(this Stream stream)
     {
         using var image = System.Drawing.Image.FromStream(stream);
-        
+
         return (image.Width, image.Height, System.Drawing.Image.GetPixelFormatSize(image.PixelFormat));
     }
 }

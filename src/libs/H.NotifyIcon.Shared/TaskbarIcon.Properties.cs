@@ -30,7 +30,7 @@ public partial class TaskbarIcon
     [SupportedOSPlatform("windows5.1.2600")]
     partial void OnIdChanged(Guid newValue)
     {
-        TrayIcon.UpdateId(newValue);
+        TrayIcon.UpdateId(newValue, Logger);
     }
 
     [SupportedOSPlatform("windows5.1.2600")]
@@ -39,6 +39,7 @@ public partial class TaskbarIcon
         TrayIcon.UpdateName(newValue ?? string.Empty);
         Id = TrayIcon.Id;
     }
+
 #endif
 
     #endregion

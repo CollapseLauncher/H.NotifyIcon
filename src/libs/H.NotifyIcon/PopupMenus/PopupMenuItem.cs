@@ -15,11 +15,11 @@ public class PopupMenuItem : PopupItem
     /// <inheritdoc/>
     public PopupMenuItem(string text, EventHandler<EventArgs> onClick, PopupMenu? subMenu)
     {
-        Text    =  text;
-        SubMenu =  subMenu;
-        Click   += onClick;
+        Text = text;
+        SubMenu = subMenu;
+        Click += onClick;
     }
-    
+
     /// <summary>
     /// 
     /// </summary>

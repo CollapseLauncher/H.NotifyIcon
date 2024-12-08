@@ -77,7 +77,7 @@ internal static class ToSystemDrawingExtensions
         {
             fontStyle |= System.Drawing.FontStyle.Bold;
         }
-        
+
         return fontStyle;
     }
 

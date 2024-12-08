@@ -56,7 +56,7 @@ public partial class TaskbarIcon
         WriteToolTipSettings();
     }
 
-#endregion
+    #endregion
 
 #if !MACOS
 
@@ -99,7 +99,7 @@ public partial class TaskbarIcon
         }
     }
 
-#endregion
+    #endregion
 
     #region Methods
 

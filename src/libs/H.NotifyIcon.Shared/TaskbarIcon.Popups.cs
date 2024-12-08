@@ -53,9 +53,9 @@ public partial class TaskbarIcon
         CreatePopup();
     }
 
-#endregion
+    #endregion
 
-#endregion
+    #endregion
 
     #region Methods
 
@@ -218,20 +218,21 @@ public partial class TaskbarIcon
         switch (PopupPlacement)
         {
             case PlacementMode.Bottom:
-            {
-                // place popup above system taskbar
-                var point = TrayInfo.GetTrayLocation(0);
-            #if HAS_WPF
+                {
+                    // place popup above system taskbar
+                    var point = TrayInfo.GetTrayLocation(0);
+#if HAS_WPF
             TrayPopupResolved.Placement = PlacementMode.AbsolutePoint;
-            #endif
-                TrayPopupResolved.HorizontalOffset = point.X;
-                TrayPopupResolved.VerticalOffset   = point.Y;
-                break;
-            }
+#endif
+                    TrayPopupResolved.HorizontalOffset = point.X;
+
+                    TrayPopupResolved.VerticalOffset = point.Y;
+                    break;
+                }
             case PlacementMode.Mouse:
                 // place popup near mouse cursor
                 TrayPopupResolved.HorizontalOffset = cursorPosition.X;
-                TrayPopupResolved.VerticalOffset   = cursorPosition.Y;
+                TrayPopupResolved.VerticalOffset = cursorPosition.Y;
                 break;
             case PlacementMode.Left:
             case PlacementMode.Right:

@@ -1,4 +1,5 @@
 ﻿using H.NotifyIcon.EfficiencyMode;
+using Microsoft.Extensions.Logging;
 
 namespace H.NotifyIcon;
 
@@ -36,6 +37,28 @@ public partial class TaskbarIcon : FrameworkElement
     [SupportedOSPlatform("windows5.1.2600")]
     public bool IsCreated => TrayIcon.IsCreated;
 
+    /// <summary>
+    /// ILogger instance for logging.
+    /// </summary>
+    public ILogger? Logger
+    {
+        get => (ILogger?)GetValue(LoggerProp);
+        set => SetValue(LoggerProp, value);
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="Logger"/> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty LoggerProp =
+        DependencyProperty.Register(
+                                    nameof(Logger), typeof(ILogger), typeof(TrayIcon), new PropertyMetadata(null));
+
+    private static readonly Action<ILogger, string, Exception?> LogErrorDelegate =
+        LoggerMessage.Define<string>(
+                                     LogLevel.Error,
+                                     new EventId(1, nameof(TaskbarIcon)),
+                                     "An error occurred: {Message}");
+
     #endregion
 
     #region Constructors
@@ -50,8 +73,8 @@ public partial class TaskbarIcon : FrameworkElement
 #if !HAS_WPF && !HAS_MAUI
         RegisterPropertyChangedCallbacks();
 #endif
+        TrayIcon = new TrayIcon(Logger);
 
-        TrayIcon = new TrayIcon();
         Id = TrayIcon.Id;
         Loaded += (_, _) =>
         {
@@ -59,8 +82,12 @@ public partial class TaskbarIcon : FrameworkElement
             {
                 ForceCreate(enablesEfficiencyMode: false);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                if (Logger != null)
+                {
+                    LogErrorDelegate(Logger, e.Message, e);
+                }
                 Debugger.Break();
             }
         };
@@ -108,9 +135,12 @@ public partial class TaskbarIcon : FrameworkElement
             _ = TrayIcon.TryRemove();
             TrayIcon.Create();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            // ignored.
+            if (Logger != null)
+            {
+                LogErrorDelegate(Logger, e.Message, e);
+            }
         }
     }
 

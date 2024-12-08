@@ -191,6 +191,8 @@ public partial class MessageWindow : IDisposable
                 case PInvoke.WM_DPICHANGED:
                     _ = OnDpiChanged();
                     break;
+                default:
+                    break;
             }
             return;
         }
@@ -283,6 +285,8 @@ public partial class MessageWindow : IDisposable
 
             case PInvoke.NIN_SELECT | PInvoke.NINF_KEY:
                 _ = OnKeyboardEventReceived(KeyboardEvent.KeySelect, point);
+                break;
+            default:
                 break;
         }
     }

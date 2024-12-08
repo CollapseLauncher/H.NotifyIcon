@@ -6,6 +6,7 @@ using ObjCRuntime;
 #else
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using H.NotifyIcon.Interop;
 #endif
 
@@ -29,6 +30,7 @@ namespace H.NotifyIcon.Core;
 /// It will be used by the system to store your TrayIcon settings, 
 /// so it is recommended to make it fixed and unique for each application TrayIcon, not random.
 /// </param>
+/// <param name="logger">Logging instance.</param>
 #endif
 #if MACOS || MACCATALYST
 [Advice("Starting with macos10.10 Soft-deprecation, forwards message to button, but will be gone in the future.")]
@@ -50,7 +52,7 @@ This can happen in the following cases:
 This can happen in the following cases:
 - Via direct Create call
 - Through the ClearNotifications call since its implementation uses TrayIcon re-creation", PropertyNames = ["Version"])]
-public partial class TrayIcon(Guid id) : IDisposable
+public partial class TrayIcon(Guid id, ILogger? logger = null) : IDisposable
 {
     #region Properties
 
@@ -146,6 +148,34 @@ public partial class TrayIcon(Guid id) : IDisposable
     /// </summary>
     public bool UseStandardTooltip { get; set; } = true;
 
+    /// <summary>
+    /// Logging instance.
+    /// </summary>
+    public ILogger? Logger { get; set; } = logger;
+
+    private static int _eventIdInternal = 1;
+    private static int EventId
+    {
+        get
+        {
+            var eId = _eventIdInternal;
+            _eventIdInternal++;
+            return eId;
+        }
+    }
+
+    internal static readonly Action<ILogger, string, Exception?> LogErrorDelegate =
+        LoggerMessage.Define<string>(
+                                     LogLevel.Error,
+                                     new EventId(EventId, nameof(TrayIcon)),
+                                     "An error occurred: {Message}");
+
+    private static readonly Action<ILogger, string, Exception?> LogInfoDelegate =
+        LoggerMessage.Define<string>(
+                                     LogLevel.Information,
+                                     new EventId(EventId, nameof(TrayIcon)),
+                                     "{Message}");
+
 #endif
     #endregion
     #region Constructors
@@ -157,8 +187,10 @@ public partial class TrayIcon(Guid id) : IDisposable
     /// Creates <see cref="Id"/> based on the simple name of an Entry assembly. <br/>
     /// Use other overloads to create multiple icons for the same application.
     /// </summary>
-    public TrayIcon() : this(CreateUniqueGuidForProcessPath())
+    /// <param name="logger"></param>
+    public TrayIcon(ILogger? logger = null) : this(CreateUniqueGuidForProcessPath())
     {
+        Logger = logger;
     }
 
     /// <summary>
@@ -321,6 +353,13 @@ public partial class TrayIcon(Guid id) : IDisposable
 #endif
 
         IsCreated = true;
+        if (Logger != null)
+        {
+            LogInfoDelegate(Logger, "TrayIcon was created.\r\n\t" +
+                                        $"Id : {Id}\r\n\t" +
+                                        $"WindowHandle : {WindowHandle}\r\n\t"
+                                        , null);
+        }
         OnCreated();
     }
 
@@ -365,7 +404,7 @@ public partial class TrayIcon(Guid id) : IDisposable
     /// </summary>
     /// <exception cref="InvalidOperationException"></exception>
     /// <exception cref="ObjectDisposedException"></exception>
-    public void UpdateId(Guid id)
+    public void UpdateId(Guid id, ILogger? logger = null)
     {
         EnsureNotDisposed();
 
@@ -374,6 +413,8 @@ public partial class TrayIcon(Guid id) : IDisposable
         {
             _ = TryRemove();
         }
+
+        Logger = logger;
 
         Id = id;
 
@@ -388,12 +429,12 @@ public partial class TrayIcon(Guid id) : IDisposable
     /// </summary>
     /// <exception cref="InvalidOperationException"></exception>
     /// <exception cref="ObjectDisposedException"></exception>
-    public void UpdateName(string name)
+    public void UpdateName(string name, ILogger? logger = null)
     {
         EnsureNotDisposed();
 
         var id = CreateUniqueGuidFromString(name);
-        UpdateId(id);
+        UpdateId(id, logger);
     }
 
 #endif

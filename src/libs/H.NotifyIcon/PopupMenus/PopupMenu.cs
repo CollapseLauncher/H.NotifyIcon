@@ -11,7 +11,7 @@ public class PopupMenu
     /// <summary>
     /// 
     /// </summary>
-    public ICollection<PopupItem> Items { get; } = new List<PopupItem>();
+    public ICollection<PopupItem> Items { get; } = [];
 
     /// <summary>
     /// 
@@ -67,7 +67,10 @@ public class PopupMenu
                     exceptions.Add(e);
                 }
             }
-            if (exceptions.Count != 0) throw new AggregateException(exceptions);
+            if (exceptions.Count != 0)
+            {
+                throw new AggregateException(exceptions);
+            }
         }
 
         // If the user cancels the menu without making a selection,
@@ -90,34 +93,37 @@ public class PopupMenu
 
         void AppendToMenu(HMENU menu, ICollection<PopupItem> items)
         {
-            var handle = new DestroyMenuSafeHandle(menu, true);
+            var handle = new DestroyMenuSafeHandle(menu);
             safeHandles.Add(handle);
 
             foreach (var item in items)
             {
-                if (item.Visible == false) continue;
+                if (!item.Visible)
+                {
+                    continue;
+                }
 
                 item.Id = lastId++;
                 _ = item switch
-                    {
-                        PopupMenuItem menuItem => PInvoke.AppendMenu(
-                                                                     hMenu: handle,
-                                                                     uFlags: menuItem.NativeFlags,
-                                                                     uIDNewItem: (nuint)item.Id,
-                                                                     lpNewItem: menuItem.Text).EnsureNonZero(),
-                        PopupMenuSeparator => PInvoke.AppendMenu(
+                {
+                    PopupMenuItem menuItem => PInvoke.AppendMenu(
                                                                  hMenu: handle,
-                                                                 uFlags: MENU_ITEM_FLAGS.MF_SEPARATOR,
+                                                                 uFlags: menuItem.NativeFlags,
                                                                  uIDNewItem: (nuint)item.Id,
-                                                                 lpNewItem: null).EnsureNonZero(),
-                        PopupSubMenu subMenu => AddSubMenu(subMenu, item.Id),
-                        _ => throw new NotImplementedException()
-                    };
+                                                                 lpNewItem: menuItem.Text).EnsureNonZero(),
+                    PopupMenuSeparator => PInvoke.AppendMenu(
+                                                             hMenu: handle,
+                                                             uFlags: MENU_ITEM_FLAGS.MF_SEPARATOR,
+                                                             uIDNewItem: (nuint)item.Id,
+                                                             lpNewItem: null).EnsureNonZero(),
+                    PopupSubMenu subMenu => AddSubMenu(subMenu),
+                    _ => throw new NotImplementedException()
+                };
             }
 
             return;
 
-            BOOL AddSubMenu(PopupSubMenu subMenu, int itemId)
+            BOOL AddSubMenu(PopupSubMenu subMenu)
             {
                 var subMenuHandle = PInvoke.CreatePopupMenu();
                 AppendToMenu(subMenuHandle, subMenu.Items);
