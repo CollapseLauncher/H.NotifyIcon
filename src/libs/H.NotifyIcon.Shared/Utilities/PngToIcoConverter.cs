@@ -8,46 +8,45 @@ internal static class PngToIcoConverter
         using var inStream = new MemoryStream(data);
         var metadata = inStream.GetMetadata();
         using var outStream = new MemoryStream();
+        
         // Header
-        {
-            // Reserved
-            outStream.WriteByte(0);
-            outStream.WriteByte(0);
-            // File format (ico)
-            outStream.WriteByte(1);
-            outStream.WriteByte(0);
-            // Image count (1)
-            outStream.WriteByte(1);
-            outStream.WriteByte(0);
-        }
+        // Reserved
+        outStream.WriteByte(0);
+        outStream.WriteByte(0);
+        // File format (ico)
+        outStream.WriteByte(1);
+        outStream.WriteByte(0);
+        // Image count (1)
+        outStream.WriteByte(1);
+        outStream.WriteByte(0);
 
         // Image entry
-        {
-            // Width
-            outStream.WriteByte((byte)metadata.Width);
-            // Height
-            outStream.WriteByte((byte)metadata.Height);
-            // Number of colors (0 = No palette)
-            outStream.WriteByte(0);
-            // Reserved
-            outStream.WriteByte(0);
-            // Color plane (1)
-            outStream.WriteByte(1);
-            outStream.WriteByte(0);
-            // Bits per pixel
-            var bppAsLittle = IntToLittle2(metadata.BitsPerPixel);
-            outStream.Write(bppAsLittle, 0, 2);
-            // Size of data in bytes
-            var byteCountAsLittle = IntToLittle4(data.Length);
-            outStream.Write(byteCountAsLittle, 0, 4);
-            // Offset of data from beginning of file (data begins right here = 22)
-            outStream.WriteByte(22);
-            outStream.WriteByte(0);
-            outStream.WriteByte(0);
-            outStream.WriteByte(0);
-            // Data
-            outStream.Write(data, 0, data.Length);
-        }
+        // Width
+        outStream.WriteByte((byte)metadata.Width);
+        // Height
+        outStream.WriteByte((byte)metadata.Height);
+        // Number of colors (0 = No palette)
+        outStream.WriteByte(0);
+        // Reserved
+        outStream.WriteByte(0);
+        // Color plane (1)
+        outStream.WriteByte(1);
+        outStream.WriteByte(0);
+        // Bits per pixel
+        var bppAsLittle = IntToLittle2(metadata.BitsPerPixel);
+        outStream.Write(bppAsLittle, 0, 2);
+        // Size of data in bytes
+        var byteCountAsLittle = IntToLittle4(data.Length);
+        outStream.Write(byteCountAsLittle, 0, 4);
+        // Offset of data from beginning of file (data begins right here = 22)
+        outStream.WriteByte(22);
+        outStream.WriteByte(0);
+        outStream.WriteByte(0);
+        outStream.WriteByte(0);
+        // Data
+        outStream.Write(data, 0, data.Length);
+        
+        
         return outStream.ToArray();
     }
 
