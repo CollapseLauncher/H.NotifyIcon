@@ -1,4 +1,5 @@
-﻿using H.NotifyIcon.Interop;
+﻿using System;
+using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.EfficiencyMode;
 
@@ -97,17 +98,24 @@ public static class EfficiencyModeUtilities
     [SupportedOSPlatform("windows10.0.16299.0")]
     public static void SetEfficiencyMode(bool value)
     {
-        var ecoLevel = Environment.OSVersion.Version >= new Version(11, 0)
-#pragma warning disable CA1416 // Validate platform compatibility
-            ? QualityOfServiceLevel.Eco
-#pragma warning restore CA1416 // Validate platform compatibility
-            : QualityOfServiceLevel.Low;
+        try
+        {
+            var ecoLevel = Environment.OSVersion.Version >= new Version(11, 0)
+            #pragma warning disable CA1416 // Validate platform compatibility
+                ? QualityOfServiceLevel.Eco
+            #pragma warning restore CA1416 // Validate platform compatibility
+                : QualityOfServiceLevel.Low;
 
-        SetProcessQualityOfServiceLevel(value
-            ? ecoLevel
-            : QualityOfServiceLevel.Default);
-        SetProcessPriorityClass(value
-            ? ProcessPriorityClass.Idle
-            : ProcessPriorityClass.Default);
+            SetProcessQualityOfServiceLevel(value
+                                                ? ecoLevel
+                                                : QualityOfServiceLevel.Default);
+            SetProcessPriorityClass(value
+                                        ? ProcessPriorityClass.Idle
+                                        : ProcessPriorityClass.Default);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
