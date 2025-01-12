@@ -4,9 +4,9 @@
     "net9.0-windows10.0.22621": {
       "DependencyPropertyGenerator": {
         "type": "Direct",
-        "requested": "[1.5.0-beta.2, )",
-        "resolved": "1.5.0-beta.2",
-        "contentHash": "3Z5oWMQSMDFCSHxh7LvgvhkIIon7VEBnqUF+U7X/oZ9+nhmxW2ECwtbzrgrquoedxnMa0XBeMkklO1BQMnr52A=="
+        "requested": "[1.5.0, )",
+        "resolved": "1.5.0",
+        "contentHash": "y9XF3i+U6nnzuVvmwBw7zW+1ztOXT8lMu084Ir4nNeLGVd1308qR2nCR6Yl06FXfjYMKU3+bknZ/otqkz6VEUQ=="
       },
       "DotNet.ReproducibleBuilds": {
         "type": "Direct",
