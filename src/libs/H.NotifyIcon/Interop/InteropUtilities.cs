@@ -5,9 +5,9 @@ namespace H.NotifyIcon.Interop;
 internal static class InteropUtilities
 {
     /// <exception cref="COMException"></exception>
-    public static HWND EnsureNonNull(this HWND value)
+    public unsafe static HWND EnsureNonNull(this HWND value)
     {
-        if (value.Value == IntPtr.Zero)
+        if (value.Value == null)
         {
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
         }

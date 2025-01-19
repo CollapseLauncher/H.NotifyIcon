@@ -123,14 +123,14 @@ public class PopupMenu
 
             return;
 
-            BOOL AddSubMenu(PopupSubMenu subMenu)
+            unsafe BOOL AddSubMenu(PopupSubMenu subMenu)
             {
                 var subMenuHandle = PInvoke.CreatePopupMenu();
                 AppendToMenu(subMenuHandle, subMenu.Items);
                 return PInvoke.AppendMenu(
                                           hMenu: handle,
                                           uFlags: MENU_ITEM_FLAGS.MF_POPUP,
-                                          uIDNewItem: (nuint)subMenuHandle.Value.ToInt64(),
+                                          uIDNewItem: (nuint)subMenuHandle.Value,
                                           lpNewItem: subMenu.Text).EnsureNonZero();
             }
         }
