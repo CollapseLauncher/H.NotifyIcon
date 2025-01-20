@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net9.0</TargetFrameworks>
@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="9.0.1" />
-    <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler" Version="9.0.1" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
     <PackageReference Update="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
