@@ -20,6 +20,12 @@
         "resolved": "0.13.1",
         "contentHash": "MIHd93AVQB+iHOPGex+yP6QLys6eKG+QFablE8rbamv5Njm6DfSkJWivUQGDVBqBnKUF0x2oyUZcJZ/w77cLoA=="
       },
+      "Microsoft.DotNet.ILCompiler": {
+        "type": "Direct",
+        "requested": "[9.0.1, )",
+        "resolved": "9.0.1",
+        "contentHash": "YSn2LXCcOfV6VntSFASNmg1W8ldLPbI74YFx+uke2lYFuahhHfeQIgKS3W52R9phB6YLWT4MvLUPDQqUelplJg=="
+      },
       "Microsoft.Extensions.Logging.Abstractions": {
         "type": "Direct",
         "requested": "[9.0.1, )",
@@ -69,6 +75,12 @@
         "resolved": "1.15.0",
         "contentHash": "FbU0El+EEjdpuIX4iDbeS7ki1uzpJPx8vbqOzEtqnl1GZeAGJfq+jCbxeJL2y0EPnUNk8dRnnqR2xnYXg9Tf+g=="
       },
+      "runtime.win-x64.Microsoft.DotNet.ILCompiler": {
+        "type": "Direct",
+        "requested": "[9.0.1, )",
+        "resolved": "9.0.1",
+        "contentHash": "UoiyJV6J46NQO7zqJwcqmGsg+1mFzuEYfCfXdCpZ+b4pqHeSG7hL25LmCO9bV2oOrhXaZESr42/cEhN/u6IMNw=="
+      },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "Transitive",
         "resolved": "9.0.1",
@@ -90,14 +102,18 @@
       "h.generatedicons.system.drawing": {
         "type": "Project",
         "dependencies": {
-          "System.Drawing.Common": "[9.0.1, )"
+          "Microsoft.DotNet.ILCompiler": "[9.0.1, )",
+          "System.Drawing.Common": "[9.0.1, )",
+          "runtime.win-x64.Microsoft.DotNet.ILCompiler": "[9.0.1, )"
         }
       },
       "h.notifyicon": {
         "type": "Project",
         "dependencies": {
           "H.GeneratedIcons.System.Drawing": "[1.0.0, )",
-          "Microsoft.Extensions.Logging.Abstractions": "[9.0.1, )"
+          "Microsoft.DotNet.ILCompiler": "[9.0.1, )",
+          "Microsoft.Extensions.Logging.Abstractions": "[9.0.1, )",
+          "runtime.win-x64.Microsoft.DotNet.ILCompiler": "[9.0.1, )"
         }
       }
     }
