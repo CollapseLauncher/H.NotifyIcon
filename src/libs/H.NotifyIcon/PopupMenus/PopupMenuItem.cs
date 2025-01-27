@@ -1,4 +1,6 @@
-﻿namespace H.NotifyIcon.Core;
+﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CheckNamespace
+namespace H.NotifyIcon.Core;
 
 /// <inheritdoc/>
 public class PopupMenuItem : PopupItem

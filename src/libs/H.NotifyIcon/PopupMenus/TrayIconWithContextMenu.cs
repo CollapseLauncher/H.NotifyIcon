@@ -1,8 +1,9 @@
 ﻿#if !MACOS
 using H.NotifyIcon.Interop;
 using Microsoft.Extensions.Logging;
-
+// ReSharper disable CheckNamespace
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace H.NotifyIcon.Core;
 
@@ -25,7 +26,7 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     /// <inheritdoc/>
-    public TrayIconWithContextMenu(ILogger? logger) : base()
+    public TrayIconWithContextMenu(ILogger? logger) : base(logger)
     {
         Logger = logger;
 
