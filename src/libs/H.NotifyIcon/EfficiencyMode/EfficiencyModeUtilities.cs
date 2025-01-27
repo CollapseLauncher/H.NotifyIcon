@@ -1,5 +1,4 @@
-﻿using System;
-using H.NotifyIcon.Interop;
+﻿using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.EfficiencyMode;
 

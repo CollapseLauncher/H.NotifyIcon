@@ -1,9 +1,7 @@
-﻿global using System.IO;
-global using System.Diagnostics;
+﻿global using System.Diagnostics;
 global using DependencyPropertyGenerator;
 global using EventGenerator;
 global using H.NotifyIcon.Core;
-global using System.Runtime.Versioning;
 #if HAS_AVALONIA
 global using Avalonia;
 global using Avalonia.Data;

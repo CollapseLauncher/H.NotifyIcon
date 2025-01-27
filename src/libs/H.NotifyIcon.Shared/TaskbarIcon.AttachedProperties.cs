@@ -8,6 +8,4 @@ quite straightforward:
 <TextBlock Text=""{Binding RelativeSource={RelativeSource Self}, Path=(tb:TaskbarIcon.ParentTaskbarIcon).ToolTipText}"" />
 </code>
 </summary>")]
-public partial class TaskbarIcon
-{
-}
+public partial class TaskbarIcon;

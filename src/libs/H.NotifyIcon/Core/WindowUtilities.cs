@@ -191,9 +191,6 @@ public static class WindowUtilities
 
                     return new LRESULT(1);
                 }
-
-            default:
-                break;
         }
 
         return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);

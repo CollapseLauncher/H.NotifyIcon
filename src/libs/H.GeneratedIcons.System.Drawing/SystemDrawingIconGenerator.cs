@@ -92,8 +92,6 @@ public static class SystemDrawingIconGenerator
                     brush: backgroundBrush,
                     rect: rect);
                 break;
-            default:
-                break;
         }
 
         if (pen != null)
@@ -119,8 +117,6 @@ public static class SystemDrawingIconGenerator
                     graphics.DrawEllipse(
                         pen: pen,
                         rect: rect);
-                    break;
-                default:
                     break;
             }
         }

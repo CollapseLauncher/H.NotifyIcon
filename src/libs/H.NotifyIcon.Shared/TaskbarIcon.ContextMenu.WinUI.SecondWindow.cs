@@ -70,7 +70,7 @@ public partial class TaskbarIcon
         };
         BindingOperations.SetBinding(frame, FlowDirectionProperty, flowDirectionBinding);
 
-        var window = new Window()
+        var window = new Window
         {
             Content = frame,
         };
