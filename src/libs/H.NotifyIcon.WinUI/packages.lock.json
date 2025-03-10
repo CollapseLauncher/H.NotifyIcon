@@ -37,9 +37,9 @@
       },
       "Microsoft.Web.WebView2": {
         "type": "Direct",
-        "requested": "[1.0.3116-prerelease, )",
-        "resolved": "1.0.3116-prerelease",
-        "contentHash": "F8vWHXXAyEB3Z60lxr39VnWbHQ2ortOvYxlvx4Ts1JRdrLtPrs9S8+XY5xJC38l4r8GNW3+hZvEHUkqQ2BAniA=="
+        "requested": "[1.0.3171-prerelease, )",
+        "resolved": "1.0.3171-prerelease",
+        "contentHash": "xxwtsNSUIIWBIs1AMYNeF7A7zNn7ooJ97LU2hFFYNDDabxcMbIAl5EXcCPpLvuvctxYl7bBzyChQY48FSBKp8g=="
       },
       "Microsoft.Windows.SDK.BuildTools": {
         "type": "Direct",
@@ -59,9 +59,9 @@
       },
       "MinVer": {
         "type": "Direct",
-        "requested": "[6.0.0, )",
-        "resolved": "6.0.0",
-        "contentHash": "+/SsmiySsXJlvQLCGBqaZKNVt3s/Y/HbAdwtop7Km2CnuZbaScoqkWJEBQ5Cy9ebkn6kCYKrHsXgwrFdTgcb3g=="
+        "requested": "[6.1.0-beta.1, )",
+        "resolved": "6.1.0-beta.1",
+        "contentHash": "7G+74w2V7Cd9wy6JmUuRsDY/lskO9smQNlp9rF6BJr70RTQb6odJ3n6Oau23/eBuvQjI6vy4bVbQPZvDFey01g=="
       },
       "PolySharp": {
         "type": "Direct",
