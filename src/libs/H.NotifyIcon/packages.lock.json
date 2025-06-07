@@ -40,6 +40,21 @@
           "Microsoft.Windows.WDK.Win32Metadata": "0.12.8-experimental"
         }
       },
+      "Microsoft.Windows.SDK.Win32Metadata": {
+        "type": "Direct",
+        "requested": "[63.0.31-preview, )",
+        "resolved": "63.0.31-preview",
+        "contentHash": "ImR/LEJIcTiQuwYognFXPED1+zRjlb4WYX5mC3E8d0Q09Zey+MMqfMDxNlX1vBbcP3dy/Fp0Lbav25FsXZwyYQ=="
+      },
+      "Microsoft.Windows.WDK.Win32Metadata": {
+        "type": "Direct",
+        "requested": "[0.13.25-experimental, )",
+        "resolved": "0.13.25-experimental",
+        "contentHash": "IM50tb/+UIwBr9FMr6ZKcZjCMW+Axo6NjGqKxgjUfyCY8dRnYUfrJEXxAaXoWtYP4X8EmASmC1Jtwh4XucseZg==",
+        "dependencies": {
+          "Microsoft.Windows.SDK.Win32Metadata": "63.0.31-preview"
+        }
+      },
       "MinVer": {
         "type": "Direct",
         "requested": "[6.1.0-beta.1, )",
@@ -67,19 +82,6 @@
         "resolved": "0.1.42-alpha",
         "contentHash": "Z/9po23gUA9aoukirh2ItMU2ZS9++Js9Gdds9fu5yuMojDrmArvY2y+tq9985tR3cxFxpZO1O35Wjfo0khj5HA=="
       },
-      "Microsoft.Windows.SDK.Win32Metadata": {
-        "type": "Transitive",
-        "resolved": "61.0.15-preview",
-        "contentHash": "cysex3dazKtCPALCluC2XX3f5Aedy9H2pw5jb+TW5uas2rkem1Z7FRnbUrg2vKx0pk0Qz+4EJNr37HdYTEcvEQ=="
-      },
-      "Microsoft.Windows.WDK.Win32Metadata": {
-        "type": "Transitive",
-        "resolved": "0.12.8-experimental",
-        "contentHash": "3n8R44/Z96Ly+ty4eYVJfESqbzvpw96lRLs3zOzyDmr1x1Kw7FNn5CyE416q+bZQV3e1HRuMUvyegMeRE/WedA==",
-        "dependencies": {
-          "Microsoft.Windows.SDK.Win32Metadata": "61.0.15-preview"
-        }
-      },
       "System.Drawing.Common": {
         "type": "Transitive",
         "resolved": "9.0.5",
@@ -93,6 +95,13 @@
         "dependencies": {
           "System.Drawing.Common": "[9.0.5, )"
         }
+      }
+    },
+    "net9.0/win-x64": {
+      "Microsoft.Win32.SystemEvents": {
+        "type": "Transitive",
+        "resolved": "9.0.5",
+        "contentHash": "D4OYNpmvAsF9MkaY2W8Jue2XuNHDhygvwzo019hs+lP85KaVnOlXmqsjDKr1dHb1DPxDnOKpe6mAgJN7S6ttwg=="
       }
     }
   }
