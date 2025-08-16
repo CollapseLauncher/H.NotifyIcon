@@ -37,9 +37,9 @@
       },
       "Microsoft.Web.WebView2": {
         "type": "Direct",
-        "requested": "[1.0.3415-prerelease, )",
-        "resolved": "1.0.3415-prerelease",
-        "contentHash": "7CGb9Y+KGdrJEKhrkU9g+Cz4WjG8wIeWx8eWbKqLgHZEUMayNfyxvILmE05gXhBnG/nz+i1cVLeGfrmIPNMjXQ=="
+        "requested": "[1.0.3477-prerelease, )",
+        "resolved": "1.0.3477-prerelease",
+        "contentHash": "DhNaJxaGEpz4IKycu8zHjCLaODteJdQPj6tA5anYsMHt2JrA5wedI+QC+MxDItbp/ljAfP2cInlinbMmkhrCfg=="
       },
       "Microsoft.Windows.SDK.BuildTools": {
         "type": "Direct",
@@ -210,9 +210,9 @@
     "net9.0-windows10.0.26100/win-x64": {
       "Microsoft.Web.WebView2": {
         "type": "Direct",
-        "requested": "[1.0.3415-prerelease, )",
-        "resolved": "1.0.3415-prerelease",
-        "contentHash": "7CGb9Y+KGdrJEKhrkU9g+Cz4WjG8wIeWx8eWbKqLgHZEUMayNfyxvILmE05gXhBnG/nz+i1cVLeGfrmIPNMjXQ=="
+        "requested": "[1.0.3477-prerelease, )",
+        "resolved": "1.0.3477-prerelease",
+        "contentHash": "DhNaJxaGEpz4IKycu8zHjCLaODteJdQPj6tA5anYsMHt2JrA5wedI+QC+MxDItbp/ljAfP2cInlinbMmkhrCfg=="
       },
       "Microsoft.Win32.SystemEvents": {
         "type": "Transitive",
