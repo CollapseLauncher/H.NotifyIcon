@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net9.0</TargetFrameworks>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup Label="Usings">
