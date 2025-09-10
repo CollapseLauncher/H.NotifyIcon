@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net4.6.2;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net4.6.2;net9.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <LangVersion>preview</LangVersion>
@@ -21,12 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DependencyPropertyGenerator" Version="1.4.0">
+    <PackageReference Include="DependencyPropertyGenerator" Version="1.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.0" PrivateAssets="All" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

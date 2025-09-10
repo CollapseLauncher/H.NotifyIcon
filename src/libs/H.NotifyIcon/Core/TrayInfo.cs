@@ -13,18 +13,18 @@ public static class TrayInfo
     /// Returns <see langword="true"/> if shell is open.
     /// </summary>
     /// <returns>Tray coordinates.</returns>
-    public unsafe static bool IsShellOpen()
+    public static bool IsShellOpen()
     {
-        return PInvoke.FindWindow("Shell_TrayWnd", null).Value != null;
+        return !PInvoke.FindWindow("Shell_TrayWnd", null).IsNull; 
     }
 
     /// <summary>
     /// Returns <see langword="true"/> if notify icon overflow window is open.
     /// </summary>
     /// <returns>Tray coordinates.</returns>
-    public unsafe static bool IsNotifyIconOverflowWindowOpen()
+    public static bool IsNotifyIconOverflowWindowOpen()
     {
-        return PInvoke.FindWindow("NotifyIconOverflowWindow", null).Value != null;
+        return !PInvoke.FindWindow("NotifyIconOverflowWindow", null).IsNull;
     }
 
     /// <summary>
