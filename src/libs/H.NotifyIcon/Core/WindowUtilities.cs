@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using H.NotifyIcon.Interop;
+﻿using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.Core;
 
@@ -98,7 +97,7 @@ public static class WindowUtilities
     {
         return PInvoke.ShowWindow(new HWND(hWnd), SHOW_WINDOW_CMD.SW_SHOWNORMAL);
     }
-
+    
     /// <summary>
     /// 
     /// </summary>
@@ -109,11 +108,11 @@ public static class WindowUtilities
         var window = new HWND(hWnd);
         var style = (WINDOW_EX_STYLE)User32Methods.GetWindowLong(window, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         style |= WINDOW_EX_STYLE.WS_EX_APPWINDOW;
-        style &= ~WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
+        style &= ~(WINDOW_EX_STYLE.WS_EX_TOOLWINDOW);
 
         _ = User32Methods.SetWindowLong(window, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, (nint)style);
     }
-
+    
     /// <summary>
     /// 
     /// </summary>
@@ -124,21 +123,21 @@ public static class WindowUtilities
         var window = new HWND(hWnd);
         var style = (WINDOW_EX_STYLE)User32Methods.GetWindowLong(window, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
         style |= WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
-        style &= ~WINDOW_EX_STYLE.WS_EX_APPWINDOW;
+        style &= ~(WINDOW_EX_STYLE.WS_EX_APPWINDOW);
 
         _ = User32Methods.SetWindowLong(window, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, (nint)style);
     }
-
+    
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
     [SupportedOSPlatform("windows5.1.2600")]
-    public static void MakeTransparent(nint hWndHandle)
+    public static unsafe void MakeTransparent(nint hWndHandle)
     {
         var hWnd = new HWND(hWndHandle);
 
-        SubClassDelegate = WindowSubClass;
+        SubClassDelegate = new SUBCLASSPROC(WindowSubClass);
 
         _ = PInvoke.SetWindowSubclass(
             hWnd: hWnd,
@@ -160,13 +159,9 @@ public static class WindowUtilities
             bAlpha: 0,
             dwFlags: LAYERED_WINDOW_ATTRIBUTES_FLAGS.LWA_COLORKEY | LAYERED_WINDOW_ATTRIBUTES_FLAGS.LWA_ALPHA).EnsureNonZero();
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int ToWin32(System.Drawing.Color c)
-    {
-        return (c.B << 16) | (c.G << 8) | c.R;
-    }
-
+    
+    private static int ToWin32(System.Drawing.Color c) => (int) c.B << 16 | (int) c.G << 8 | (int) c.R;
+    
     private static SUBCLASSPROC? SubClassDelegate;
 
     [SupportedOSPlatform("windows5.1.2600")]
@@ -187,7 +182,7 @@ public static class WindowUtilities
                         lprc: &rect,
                         hbr: hBrush).EnsureNonZero();
                     _ = PInvoke.DeleteObject(
-                        ho: new HGDIOBJ(&hBrush)).EnsureNonZero();
+                        ho: hBrush).EnsureNonZero();
 
                     return new LRESULT(1);
                 }

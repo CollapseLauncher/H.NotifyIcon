@@ -1,37 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetFrameworks>net9.0-windows10.0.26100.0</TargetFrameworks>
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI;IS_PACKABLE;HAS_PLATFORM_CODE</DefineConstants>
     <NoWarn>$(NoWarn);CS3021;CA1031;CS8002;CA1513;NETSDK1206</NoWarn>
     <Nullable>enable</Nullable>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <EnableMsixTooling>true</EnableMsixTooling>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <Platforms>x64</Platforms>
-    <IsAotCompatible>true</IsAotCompatible>
-    <CsWinRTAotOptimizerEnabled>true</CsWinRTAotOptimizerEnabled>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>12</LangVersion>
-
-    <!-- Placeholder to make Hot Reload happy -->
-    <Version>0.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4948" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250814004-preview" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.9" />
-    <PackageReference Update="PolySharp" Version="1.15.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Update="MinVer" Version="6.1.0-beta.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250907003" />
+    <PackageReference Include="System.Collections.Immutable" Version="9.0.9" />
+    <PackageReference Include="System.Reflection.Metadata" Version="9.0.9" />
   </ItemGroup>
 
   <PropertyGroup Label="NuGet">
