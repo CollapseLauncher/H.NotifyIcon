@@ -222,6 +222,27 @@
           "Microsoft.Extensions.Logging": "[9.0.9, )"
         }
       }
+    },
+    "net9.0-windows10.0.26100/win-x64": {
+      "Microsoft.Web.WebView2": {
+        "type": "Transitive",
+        "resolved": "1.0.3179.45",
+        "contentHash": "3pokSH5CnN0G6rGhGFo1y87inxYhNxBQ2Vdf0wlvBj99KHxQJormjDACmqRnFeUsmuNFIhWwfAL1ztq7wD5qRA=="
+      },
+      "Microsoft.Win32.SystemEvents": {
+        "type": "Transitive",
+        "resolved": "9.0.9",
+        "contentHash": "eJU9vZbN710Cc25p/jPecPEL+gFcnynAvznNRnEvMU7i7u0PSjFXlGO4SOlaIUvkykTlS2N++M9B/coxYT7aPw=="
+      },
+      "Microsoft.WindowsAppSDK.Foundation": {
+        "type": "Transitive",
+        "resolved": "1.8.250906002",
+        "contentHash": "ltIXeHUX0AATpqmx/oBcRK+zhtK0KAfoGqItlQRlef9kG7Itj9iXAI+1EdFr4cQYzHzFM3PPLszEWDyR633svA==",
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250831001",
+          "Microsoft.WindowsAppSDK.InteractiveExperiences": "1.8.250906004"
+        }
+      }
     }
   }
 }

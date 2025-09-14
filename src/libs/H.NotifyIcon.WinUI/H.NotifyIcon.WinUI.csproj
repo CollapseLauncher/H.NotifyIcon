@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net9.0-windows10.0.26100.0</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI;IS_PACKABLE;HAS_PLATFORM_CODE</DefineConstants>
     <NoWarn>$(NoWarn);CS3021;CA1031;CS8002;CA1513;NETSDK1206</NoWarn>
