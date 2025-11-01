@@ -42,4 +42,8 @@ popups, context menus, and balloon messages. It can be used directly in code or 
     <ProjectReference Include="..\H.NotifyIcon\H.NotifyIcon.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="DotNet.ReproducibleBuilds" Version="1.2.39" />
+  </ItemGroup>
+
 </Project>
