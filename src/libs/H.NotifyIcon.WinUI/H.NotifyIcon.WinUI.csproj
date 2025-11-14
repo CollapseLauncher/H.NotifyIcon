@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0-windows10.0.26100.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows10.0.26100.0</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI;IS_PACKABLE;HAS_PLATFORM_CODE</DefineConstants>
@@ -13,9 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
-    <PackageReference Include="System.Collections.Immutable" Version="9.0.11" />
-    <PackageReference Include="System.Reflection.Metadata" Version="9.0.11" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+    <PackageReference Include="System.Collections.Immutable" Version="10.0.0" />
+    <PackageReference Include="System.Reflection.Metadata" Version="10.0.0" />
   </ItemGroup>
 
   <PropertyGroup Label="NuGet">
