@@ -1,4 +1,4 @@
-﻿using H.NotifyIcon.EfficiencyMode;
+using H.NotifyIcon.EfficiencyMode;
 using Microsoft.Extensions.Logging;
 
 namespace H.NotifyIcon;
@@ -87,6 +87,7 @@ public partial class TaskbarIcon : FrameworkElement
                 if (Logger != null)
                 {
                     LogErrorDelegate(Logger, e.Message, e);
+                    ExceptionCatcher.SetException(this, e);
                 }
                 Debugger.Break();
             }
@@ -173,4 +174,65 @@ public partial class TaskbarIcon : FrameworkElement
     }
 
     #endregion
+}
+
+/// <summary>
+/// Allows to attach exceptions without interrupting the sacred WinUI threading and exception handling
+/// </summary>
+public static class ExceptionCatcher
+{
+    #nullable enable
+    /// <summary>
+    /// Raise <see cref="ExceptionRaised"/> when new exception captured.
+    /// </summary>
+    public static readonly DependencyProperty ExceptionProperty =
+        DependencyProperty.RegisterAttached(
+                                            "Exception",
+                                            typeof(Exception),
+                                            typeof(ExceptionCatcher),
+                                            new PropertyMetadata(null, OnExceptionChanged));
+
+    /// <summary>
+    /// Capture exception
+    /// </summary>
+    /// <param name="obj">Target object</param>
+    /// <param name="value">Exception value</param>
+    public static void SetException(DependencyObject? obj, Exception? value)
+        => obj?.SetValue(ExceptionProperty, value);
+
+    /// <summary>
+    /// Gets the current exception captured from property.
+    /// </summary>
+    /// <param name="obj">Object holding the attached exception</param>
+    /// <returns><see cref="Exception"/> value, or <c>null</c>.</returns>
+    public static Exception? GetException(DependencyObject? obj)
+        => (Exception?)obj?.GetValue(ExceptionProperty);
+
+    /// <summary>
+    /// Raised whenever an exception is captured.
+    /// </summary>
+    public static event EventHandler<ExceptionEventArgs>? ExceptionRaised;
+
+    private static void OnExceptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (e.NewValue is Exception ex)
+            ExceptionRaised?.Invoke(d, new ExceptionEventArgs(ex));
+    }
+}
+
+/// <summary>
+/// Provides data for <see cref="ExceptionCatcher.ExceptionRaised"/>.
+/// </summary>
+public sealed class ExceptionEventArgs : EventArgs
+{
+    /// <summary>
+    /// The exception reported by the component.
+    /// </summary>
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
+    public Exception Exception { get; }
+
+    /// <summary>
+    /// Creates a new instance containing the exception.
+    /// </summary>
+    public ExceptionEventArgs(Exception exception) => Exception = exception;
 }
