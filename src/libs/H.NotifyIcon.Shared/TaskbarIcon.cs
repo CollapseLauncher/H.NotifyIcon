@@ -179,6 +179,7 @@ public partial class TaskbarIcon : FrameworkElement
 /// <summary>
 /// Allows to attach exceptions without interrupting the sacred WinUI threading and exception handling
 /// </summary>
+[CLSCompliant(false)]
 public static class ExceptionCatcher
 {
     #nullable enable
