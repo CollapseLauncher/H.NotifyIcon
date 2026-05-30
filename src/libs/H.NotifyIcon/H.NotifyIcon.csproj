@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="DotNet.ReproducibleBuilds" Version="2.0.2" />
+    <PackageReference Update="PolySharp" Version="1.16.0" />
   </ItemGroup>
 
 </Project>
