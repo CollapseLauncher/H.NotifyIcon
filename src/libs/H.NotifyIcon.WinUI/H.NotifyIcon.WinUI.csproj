@@ -13,6 +13,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Platforms>x64</Platforms>
     <IsAotCompatible>true</IsAotCompatible>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>

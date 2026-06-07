@@ -6,6 +6,7 @@
     <PolySharpExcludeGeneratedTypes>System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute</PolySharpExcludeGeneratedTypes>
     <Platforms>x64</Platforms>
     <IsAotCompatible>true</IsAotCompatible>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">
