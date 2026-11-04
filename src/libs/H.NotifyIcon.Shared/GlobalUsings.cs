@@ -1,6 +1,5 @@
 ﻿global using System.Diagnostics;
 global using DependencyPropertyGenerator;
-global using EventGenerator;
 global using H.NotifyIcon.Core;
 #if HAS_AVALONIA
 global using Avalonia;

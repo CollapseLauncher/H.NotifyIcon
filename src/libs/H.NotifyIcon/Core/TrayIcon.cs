@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using EventGenerator;
 #if MACOS
 using CoreFoundation;
 using ObjCRuntime;
@@ -40,18 +39,6 @@ namespace H.NotifyIcon.Core;
 #else
 [SupportedOSPlatform("windows5.1.2600")]
 #endif
-[Event("Created", Description = @"TrayIcon was created.
-This can happen in the following cases:
- - Via direct Create call
- - Through the ClearNotifications call since its implementation uses TrayIcon re-creation")]
-[Event("Removed", Description = @"TrayIcon was removed.
-This can happen in the following cases:
-- Via direct TryRemove call
-- Through the ClearNotifications call since its implementation uses TrayIcon re-creation")]
-[Event<IconVersion>("VersionChanged", Description = @"Version was changed.
-This can happen in the following cases:
-- Via direct Create call
-- Through the ClearNotifications call since its implementation uses TrayIcon re-creation", PropertyNames = ["Version"])]
 public partial class TrayIcon(Guid id, ILogger? logger = null) : IDisposable
 {
     #region Properties
