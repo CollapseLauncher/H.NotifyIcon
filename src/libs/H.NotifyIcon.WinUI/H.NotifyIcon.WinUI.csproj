@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net10.0-windows10.0.26100.0</TargetFrameworks>
+    <TargetFrameworks>net11.0-windows10.0.26100.0</TargetFrameworks>
     <WindowsSdkPackageVersion>10.0.26100.87</WindowsSdkPackageVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
-    <PackageReference Include="System.Reflection.Metadata" Version="10.0.14" />
+    <PackageReference Include="System.Reflection.Metadata" Version="11.0.0" />
   </ItemGroup>
 
   <PropertyGroup Label="NuGet">
@@ -43,7 +43,7 @@ popups, context menus, and balloon messages. It can be used directly in code or 
 
   <ItemGroup>
     <PackageReference Update="DotNet.ReproducibleBuilds" Version="2.0.5" />
-    <PackageReference Update="PolySharp" Version="1.16.0" />
+    <PackageReference Update="PolySharp" Version="1.17.0" />
   </ItemGroup>
 
 </Project>
